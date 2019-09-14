@@ -11,6 +11,8 @@ class ListCoursesComponent extends Component {
         }
         this.refreshCourse = this.refreshCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
+        this.updateCourse = this.updateCourse.bind(this);
+        this.addCourse = this.addCourse.bind(this);
     }
 
     componentDidMount(){
@@ -33,6 +35,15 @@ class ListCoursesComponent extends Component {
                     this.refreshCourse();
                 })
     }
+
+    updateCourse(id){
+        console.log('update' + id);
+        this.props.history.push(`/courses/${id}`);
+    }
+
+    addCourse(){
+        this.props.history.push(`/courses/-1`);
+    }
    
     render() { 
         return (  
@@ -54,10 +65,14 @@ class ListCoursesComponent extends Component {
                                 <td>{course.id}</td>
                                 <td>{course.description}</td>
                                 <td><button className="btn btn-info" onClick={()=> this.deleteCourse(course.id)}>Delete</button></td>
+                                <td><button className="btn btn-info" onClick={()=>this.updateCourse(course.id)}>Update</button></td>
                             </tr>)
                             }
                         </tbody>
                     </table>
+                    <div className="row">
+                        <button className="btn btn-success" onClick={this.addCourse}>Add</button>
+                    </div>
                     </div>
                 </div>
             </React.Fragment>

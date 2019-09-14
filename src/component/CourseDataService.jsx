@@ -11,6 +11,10 @@ class CourseDataService {
     deleteCourse(id){
         return axios.delete(`${COURSE_API}/courseslist/${id}`);
     }
+
+    retrieveCourse(id){
+        return axios.get(`${COURSE_API}/courseslist/${id}`);
+    }
 }
 
 export default new CourseDataService();

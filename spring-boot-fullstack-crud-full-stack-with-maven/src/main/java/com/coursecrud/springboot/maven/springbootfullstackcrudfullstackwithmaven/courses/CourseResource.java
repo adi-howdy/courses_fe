@@ -33,4 +33,11 @@ public class CourseResource {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@GetMapping("/courseslist/{id}")
+	public Course getCourse(@PathVariable long id){
+		return courseManagementService.findById(id);
+		
+		
+	}
+	
 }
