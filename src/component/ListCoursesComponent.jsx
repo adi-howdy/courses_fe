@@ -37,11 +37,10 @@ class ListCoursesComponent extends Component {
     }
 
     updateCourse(id){
-        console.log('update' + id);
         this.props.history.push(`/courses/${id}`);
     }
 
-    addCourse(){
+    addCourse(id){
         this.props.history.push(`/courses/-1`);
     }
    

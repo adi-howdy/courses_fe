@@ -10,6 +10,8 @@ class CourseComponent extends Component {
             id: this.props.match.params.id,
             description: ''
         }
+        this.Onchange = this.Onchange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     componentDidMount(){
@@ -21,6 +23,26 @@ class CourseComponent extends Component {
             )
             console.log('desc' + this.state.description);
     }
+
+    Onchange(event){
+        this.setState({description: event.target.value});
+    }
+
+    onSubmit(values){
+        let course = {
+            id: this.state.id,
+            description: this.state.description
+        }
+        
+        if(this.state.id === -1){
+            CourseDataService.createCourse(course)
+                .then(()=> this.state.history.push('/courses'));
+        }else{
+        CourseDataService.updateCourse(this.state.id,course)
+            .then(()=> this.state.history.push('/courses'));
+        }
+            console.log('values: ' + values);
+    }
     render() { 
         let { description, id } = this.state
         return ( 
@@ -29,23 +51,13 @@ class CourseComponent extends Component {
                 <h1>Course Details</h1>
                 
                 <div className="container">
-                    <Formik initialValues> {
-                        (props)=>(
-                            <Form>
-                                <fieldset className="form-group">
-                                    <label htmlFor="">Id</label>
-                                    <Field className="form-control" type="text" name="id" disabled />
-                                </fieldset>
-                                <fieldset className="form-group">
-                                    <label htmlFor="">Description</label>
-                                    <Field className="form-control" type="text" name="description"  />
-                                </fieldset>
-                                <button className="btn btn-success" type="submit">Save</button>
-                            </Form>
-                        )
-                    }>
-
-                    </Formik>
+                            <form onSubmit={this.onSubmit}>
+                                <label>Id</label>
+                                <input type="text" value={this.state.id} onChange={this.Onchange} />
+                                <label htmlFor="">Description</label>
+                                <input type="text" value={this.state.description} onChange={this.Onchange}/>
+                                <button className="btn btn-success" type="submit" >Save</button>
+                            </form>
                 </div>
             </div>
             );

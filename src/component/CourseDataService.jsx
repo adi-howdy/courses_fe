@@ -15,6 +15,14 @@ class CourseDataService {
     retrieveCourse(id){
         return axios.get(`${COURSE_API}/courseslist/${id}`);
     }
+
+    updateCourse(id, course){
+        return axios.put(`${COURSE_API}/courseslist/${id}`, course);
+    }
+
+    createCourse(course){
+        return axios.post(`${COURSE_API}/courseslist/`, course);
+    }
 }
 
 export default new CourseDataService();
