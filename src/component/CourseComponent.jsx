@@ -33,11 +33,13 @@ class CourseComponent extends Component {
             id: this.state.id,
             description: this.state.description
         }
-        
-        if(this.state.id === -1){
+        console.log("id:" + this.state.id + this.state.description);
+        if(this.state.id == -1){
             CourseDataService.createCourse(course)
                 .then(()=> this.state.history.push('/courses'));
         }else{
+            console.log("*****************************");
+            console.log("id:" + this.state.id + this.state.description);
         CourseDataService.updateCourse(this.state.id,course)
             .then(()=> this.state.history.push('/courses'));
         }
@@ -52,8 +54,8 @@ class CourseComponent extends Component {
                 
                 <div className="container">
                             <form onSubmit={this.onSubmit}>
-                                <label>Id</label>
-                                <input type="text" value={this.state.id} onChange={this.Onchange} />
+                                {/* <label>Id</label> */}
+                                {/* <input type="text" value={this.state.id} onChange={this.Onchange} /> */}
                                 <label htmlFor="">Description</label>
                                 <input type="text" value={this.state.description} onChange={this.Onchange}/>
                                 <button className="btn btn-success" type="submit" >Save</button>
