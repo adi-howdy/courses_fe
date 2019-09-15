@@ -21,7 +21,6 @@ class CourseDataService {
     }
 
     createCourse(course){
-        console.log("course: " + course);
         return axios.post(`${COURSE_API}/courseslist/`, course);
     }
 }

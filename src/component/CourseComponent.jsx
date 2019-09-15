@@ -33,17 +33,13 @@ class CourseComponent extends Component {
             id: this.state.id,
             description: this.state.description
         }
-        console.log("id:" + this.state.id + this.state.description);
         if(this.state.id == -1){
             CourseDataService.createCourse(course)
                 .then(()=> this.state.history.push('/courses'));
         }else{
-            console.log("*****************************");
-            console.log("id:" + this.state.id + this.state.description);
         CourseDataService.updateCourse(this.state.id,course)
             .then(()=> this.state.history.push('/courses'));
         }
-            console.log('values: ' + values);
     }
     render() { 
         let { description, id } = this.state

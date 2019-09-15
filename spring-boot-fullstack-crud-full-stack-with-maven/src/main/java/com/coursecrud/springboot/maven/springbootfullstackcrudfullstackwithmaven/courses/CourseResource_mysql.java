@@ -51,7 +51,6 @@ public class CourseResource_mysql {
 	@PostMapping("/courseslist")
 	public ResponseEntity<Void> createCourse(@RequestBody Course course){
 		Course createdCourse = courseRepository.save(course);
-		//return new ResponseEntity<Course>(createdCourse, HttpStatus.OK);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(createdCourse.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
